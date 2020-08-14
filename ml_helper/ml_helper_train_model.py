@@ -70,13 +70,13 @@ def train_model(predictors,
         print()
         print(model.best_params_)
         print()
-        print("Grid scores on development set:")
-        print()
-        means = model.cv_results_['mean_test_score']
-        stds = model.cv_results_['std_test_score']
-        for mean, std, params in zip(means, stds, model.cv_results_['params']):
-            print("%0.3f (+/-%0.03f) for %r" % (mean, std * 2, params))
-        print()
+#         print("Grid scores on development set:")
+#         print()
+#         means = model.cv_results_['mean_test_score']
+#         stds = model.cv_results_['std_test_score']
+#         for mean, std, params in zip(means, stds, model.cv_results_['params']):
+#             print("%0.3f (+/-%0.03f) for %r" % (mean, std * 2, params))
+#         print()
 
         print("Detailed classification report:")
         print()
