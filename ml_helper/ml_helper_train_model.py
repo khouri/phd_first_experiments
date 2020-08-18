@@ -37,16 +37,30 @@ from sklearn.metrics import classification_report
 from sklearn.svm import SVC
 from sklearn.ensemble import RandomForestClassifier
 
+
+def get_train_test(predictors, target):
+    
+    X_train, X_test, y_train, y_test = train_test_split(predictors, 
+                                                        target, 
+                                                        test_size = 0.25, 
+                                                        random_state = 6411994)
+    
+    return(X_train, X_test, y_train, y_test)
+pass
+
+
 def train_model(predictors, 
                 target, 
                 folds,
                 param_to_be_tunned, 
                 estimator):
 
-    X_train, X_test, y_train, y_test = train_test_split(predictors, 
-                                                        target, 
-                                                        test_size = 0.25, 
-                                                        random_state = 6411994)
+#     X_train, X_test, y_train, y_test = train_test_split(predictors, 
+#                                                         target, 
+#                                                         test_size = 0.25, 
+#                                                         random_state = 6411994)
+
+    X_train, X_test, y_train, y_test = get_train_test(predictors, target)
 
     tuned_parameters = param_to_be_tunned
 
@@ -69,15 +83,6 @@ def train_model(predictors,
         print("Best parameters set found on development set:")
         print()
         print(model.best_params_)
-        print()
-#         print("Grid scores on development set:")
-#         print()
-#         means = model.cv_results_['mean_test_score']
-#         stds = model.cv_results_['std_test_score']
-#         for mean, std, params in zip(means, stds, model.cv_results_['params']):
-#             print("%0.3f (+/-%0.03f) for %r" % (mean, std * 2, params))
-#         print()
-
         print("Detailed classification report:")
         print()
         print("The model is trained on the full development set.")
