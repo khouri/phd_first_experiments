@@ -10,8 +10,7 @@ their results and teaching how to use the tecnique.
 
 
 ## Project structure:
-1. data
-1.1 Is the folder with the datasets used to train the model
+1. *data*: folder with the datasets used to train the model
 
 2. ml_helper 
 
