@@ -14,7 +14,7 @@ their results and teaching how to use the tecnique.
 
 2. **ml_helper**: Sci-kit learn source code used
 
-3. **model**: Serialized models
+3. **serialized_model**: Serialized models
 
 4. **pictures**:  Pictures folder
 
