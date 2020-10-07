@@ -10,32 +10,18 @@ their results and teaching how to use the tecnique.
 
 
 ## Project structure:
-1. *data*: folder with the datasets used to train the model
+1. **data**: Folder with the datasets used to train the model
 
-2. ml_helper 
+2. **ml_helper**: Sci-kit learn source code used
 
-Sci-kit learn source code used
+3. **model**: Serialized models
 
-3. model 
+4. **pictures**:  Pictures folder
 
-Serialized models
+5. **EDA.ipynb**: Exploratory data analisys over the datasets
 
-4. pictures 
+6. **data_cleaning.ipynb**: Cleaning techniques to standardize the data
 
-Pictures folder
+7. **model_trainning.ipynb**: Sci-kit learn source code used to get the data and train it
 
-5. EDA.ipynb
-
-Exploratory data analisys over the datasets
-
-6. data_cleaning.ipynb
-
-Cleaning techniques to standardize the data
-
-7. model_trainning.ipynb
-
-Sci-kit learn source code used to get the data and train it
-
-8. model_interpretation.ipynb
-
-Source code
+8. **model_interpretation.ipynb**: Source code
