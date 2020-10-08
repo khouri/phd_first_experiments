@@ -25,3 +25,7 @@ their results and teaching how to use the tecnique.
 7. **model_trainning.ipynb**: Sci-kit learn source code used to get the data and train it
 
 8. **model_interpretation.ipynb**: Source code
+
+
+## Procedure to execute the code
+
