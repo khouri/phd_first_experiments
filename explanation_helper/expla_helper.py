@@ -87,6 +87,59 @@ def explain_it(model,
 pass
 
 
+def explain_it_param(model, 
+               dataset, 
+               target_names, 
+               num_features, 
+               instance_index, 
+               output_file_path,
+               #object level
+               kernel_width,
+               feature_selection,          # 'forward_selection', 'lasso_path', 'none' or 'auto'.
+               discretize_continuous,      # True False
+               discretizer,                #'quartile', 'decile', 'entropy' para discretize_continuous = True
+               sample_around_instance):    # True False
+
+    np.random.seed(1)
+
+    predictors = dataset.loc[:, dataset.columns != 'target']
+    target = dataset.target
+
+    X_train, X_test, y_train, y_test = train_test_split(predictors, 
+                                                        target, 
+                                                        test_size = 0.25, 
+                                                        random_state = 6411994)
+    
+    instace_to_be_explained = X_test.loc[instance_index,:].to_numpy()
+
+    feature_names = list(dataset.columns.values)
+    X_train = X_train.to_numpy()
+    X_test = X_test.to_numpy()
+
+    explainer = lime.lime_tabular.LimeTabularExplainer(X_train, 
+                                                       feature_names = feature_names, 
+                                                       class_names = target_names, 
+                                                       kernel_width = kernel_width,
+                                                       feature_selection = feature_selection,
+                                                       discretize_continuous = discretize_continuous,
+                                                       discretizer = discretizer,
+                                                       sample_around_instance = sample_around_instance,
+                                                       random_state = 6411994)
+
+    #print(explainer.explain_instance.__code__.co_varnames)
+    exp = explainer.explain_instance(instace_to_be_explained,
+                                     model.predict_proba, 
+                                     num_features = num_features, 
+                                     top_labels = 2)
+
+#     print(output_file_path)
+    exp.save_to_file(output_file_path,
+                     predict_proba = True, 
+                     show_predicted_value = True)
+
+pass
+
+
 def to_float(dataset):
 
     columns = dataset.loc[:, dataset.columns != 'target'].columns

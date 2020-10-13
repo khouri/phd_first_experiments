@@ -27,5 +27,5 @@ their results and teaching how to use the tecnique.
 8. **model_interpretation.ipynb**: Source code
 
 
-## Procedure to execute the code
+## How to execute the code
 
