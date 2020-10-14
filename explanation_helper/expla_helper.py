@@ -49,7 +49,7 @@ pass
 
 def explain_it(model, 
                dataset, 
-               target_names, 
+#                target_names, 
                num_features, 
                instance_index, 
                output_file_path):
@@ -72,13 +72,13 @@ def explain_it(model,
 
     explainer = lime.lime_tabular.LimeTabularExplainer(X_train, 
                                                        feature_names = feature_names, 
-                                                       class_names = target_names, 
+#                                                        class_names = target_names, 
                                                        discretize_continuous = True)
 
     exp = explainer.explain_instance(instace_to_be_explained,
                                      model.predict_proba, 
                                      num_features = num_features, 
-                                     top_labels = 2)
+                                     top_labels = 3)
 
     exp.save_to_file(output_file_path,
                      predict_proba = True, 
