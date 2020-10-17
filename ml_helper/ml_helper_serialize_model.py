@@ -19,27 +19,21 @@ from sklearn.metrics import classification_report
 import seaborn as sns 
 from dateutil.rrule import rrule, DAILY, MONTHLY
 from sklearn.utils import resample
+import joblib
+from datetime import datetime, timedelta, date
+import sys
+import logging
+import itertools
 
 import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 warnings.filterwarnings("ignore")
 
-#lib para serializar objetos
-# from sklearn.externals import joblib
-import joblib
-
-from datetime import datetime, timedelta, date
-import sys
-import logging
-import time
-import itertools
 
 def serialize_model(model, file_name):
     joblib.dump(model, file_name)
 pass
 
-
 def load_model(file_name):
     return(joblib.load(file_name))
 pass
-

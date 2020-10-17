@@ -41,6 +41,7 @@ def sample_baseline_model(model, dataset):
     #random sample by each possible value of confusion matrix
     grouped_data = mat_conf.groupby(['mat_conf_mod'])
     sample_by_group = grouped_data.sample(n = 1, random_state = 6411994)
+    print(sample_by_group)
     heart_index = sample_by_group.index
 
     return(heart_index)
@@ -49,7 +50,7 @@ pass
 
 def explain_it(model, 
                dataset, 
-#                target_names, 
+               target_names, 
                num_features, 
                instance_index, 
                output_file_path):
@@ -72,7 +73,7 @@ def explain_it(model,
 
     explainer = lime.lime_tabular.LimeTabularExplainer(X_train, 
                                                        feature_names = feature_names, 
-#                                                        class_names = target_names, 
+                                                       class_names = target_names, 
                                                        discretize_continuous = True)
 
     exp = explainer.explain_instance(instace_to_be_explained,
