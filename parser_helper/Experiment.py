@@ -38,6 +38,14 @@ class Experiment:
         self.class_inst_baseline = Experiment.__def_class_inst_baseline(instance_index, dataset)
     pass
 
+    def set_c1_prob(self, predicted_proba_c1):
+        self.predicted_proba_c1 = predicted_proba_c1
+    pass
+
+    def set_c0_prob(self, predicted_proba_c0):
+        self.predicted_proba_c0 = predicted_proba_c0
+    pass
+
     # TODO: add this relation in the file
     # name, to become less hard coded
     @staticmethod

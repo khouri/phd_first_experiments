@@ -9,6 +9,7 @@ import joblib
 import glob
 from Experiment import Experiment
 from parser_lime_explanation_html import parser_lime_explanation_html
+from parser_lime_explanation_old84_html import parser_lime_explanation_old84_html
 
 def serialize(object, file_name):
     joblib.dump(object, file_name)
@@ -28,14 +29,21 @@ if __name__ == "__main__":
 	#
 	# serialize(experiments, 'my_beautiful_experiments.pkl')
 
-	my_beautiful_obj = deserialize('my_beautiful_experiments.pkl')
+	# my_beautiful_obj = deserialize('my_beautiful_experiments.pkl')
+	#
+	# for experiment in range(len(my_beautiful_obj)):
+	# 	my_beautiful_obj[experiment].print_experiment()
+	#
+	# print(len(my_beautiful_obj))
+	file = """../serialized_explanation/old_exec/DT_diabetes_instance_86_num_features_11.html"""
+	exp = parser_lime_explanation_old84_html(file).parse_all_experiment()
+	# exp.print_experiment()
 
-	for experiment in range(len(my_beautiful_obj)):
-		my_beautiful_obj[experiment].print_experiment()
-
-	print(len(my_beautiful_obj))
 pass
 
 # arquivo = """../serialized_explanation/DT#diabetes#instance:86#num_features:11#feat_selec:auto#discre:decile#sai:False#kernel_s:2.html"""
-	# Exp = parser_lime_explanation_html(arquivo).parse_all_experiment()
-	# Exp.print_experiment()
+# Exp = parser_lime_explanation_html(arquivo).parse_all_experiment()
+# Exp.print_experiment()
+
+
+

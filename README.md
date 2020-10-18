@@ -18,11 +18,11 @@ their results and teaching how to use the tecnique.
 
 4. **pictures**:  Pictures folder
 
-5. **EDA.ipynb**: Exploratory data analisys over the datasets
+5. **EDA.ipynb**: Exploratory data analysis over the datasets
 
 6. **data_cleaning.ipynb**: Cleaning techniques to standardize the data
 
-7. **model_trainning.ipynb**: Sci-kit learn source code used to get the data and train it
+7. **model_training.ipynb**: Sci-kit learn source code used to get the data and train it
 
 8. **model_interpretation.ipynb**: Source code
 
