@@ -30,14 +30,14 @@ class parser_lime_explanation_old84_html:
     def __parse_file_name(self):
 
         parameters_together = self.file_name.replace("../serialized_explanation/old_exec/", "").replace(".html", "")
-        parameters = parameters_together.split("_")
+        parameters = parameters_together.split("#")
 
         #Vanila experiment
         discretize_continuous = None
         model = parameters[0].strip()
         dataset = parameters[1].strip()
-        instance_index = int(parameters[3].strip())
-        n_features = int(parameters[6].strip())
+        instance_index = int(parameters[2].split(":")[1].strip())
+        n_features = int(parameters[3].split(":")[1].strip())
         feature_selection = None
         discretizer = None
         sample_around_instance = None
@@ -62,15 +62,21 @@ class parser_lime_explanation_old84_html:
 
             #new lime.PredictProba(pp_svg, ["doente", "saudável"], [0.9538461538461539, 0.046153846153846156]);
             ma = re.search("new lime.PredictProba\(pp_svg,.*\);", texto)
+
             class_probs_raw = texto[ma.span()[0]:ma.span()[1]]
+
+            # print(class_probs_raw)
             feature_importance_sem_tag = class_probs_raw.replace("new lime.PredictProba(pp_svg,", "").replace(");", "").replace(
                 "]", "").replace("[", "")
             feature_importance_sem_aspas = feature_importance_sem_tag.replace("\"", "")
+            # print(feature_importance_sem_aspas)
             feature_importance_quebrado_por_feature = feature_importance_sem_aspas.split(",")
-            print(feature_importance_quebrado_por_feature[0].strip())
-            print(feature_importance_quebrado_por_feature[1].strip())
-            print(feature_importance_quebrado_por_feature[2].strip())
-            print(feature_importance_quebrado_por_feature[3].strip())
+
+            experiment.set_c1_prob(feature_importance_quebrado_por_feature[0].strip(),
+                                   feature_importance_quebrado_por_feature[2].strip())
+
+            experiment.set_c0_prob(feature_importance_quebrado_por_feature[1].strip(),
+                                   feature_importance_quebrado_por_feature[3].strip())
 
             # class0 weigths
             ma = re.search("exp.show.*0, exp_div\);", texto)

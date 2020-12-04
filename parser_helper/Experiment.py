@@ -38,12 +38,63 @@ class Experiment:
         self.class_inst_baseline = Experiment.__def_class_inst_baseline(instance_index, dataset)
     pass
 
-    def set_c1_prob(self, predicted_proba_c1):
-        self.predicted_proba_c1 = predicted_proba_c1
+
+    def get_class_inst_baseline(self):
+        return (self.class_inst_baseline)
     pass
 
-    def set_c0_prob(self, predicted_proba_c0):
+    def get_kernel_width(self):
+        return(self.kernel_width)
+    pass
+
+    def get_feature_selection(self):
+        return(self.feature_selection)
+    pass
+
+    def get_discretize_continuous(self):
+        return(self.discretize_continuous)
+    pass
+
+    def get_discretizer(self):
+        return(self.discretizer)
+    pass
+
+    def get_instance_index(self):
+        return(self.instance_index)
+    pass
+
+    def get_sample_around_instance(self):
+        return(self.sample_around_instance)
+    pass
+
+    def get_dataset(self):
+        return(self.dataset)
+    pass
+
+    def get_model(self):
+        return(self.model)
+    pass
+
+    def get_n_features(self):
+        return(self.n_features)
+    pass
+
+    def set_c1_prob(self, predicted_proba_c1, class_name_c1):
+        self.predicted_proba_c1 = predicted_proba_c1
+        self.class_name_c1 = class_name_c1
+    pass
+
+    def set_c0_prob(self, predicted_proba_c0, class_name_c0):
         self.predicted_proba_c0 = predicted_proba_c0
+        self.class_name_c0 = class_name_c0
+    pass
+
+    def get_prob_and_feat_list(self):
+
+        if(self.predicted_proba_c0 >= self.predicted_proba_c1):
+            return(self.predicted_proba_c0, self.class_name_c0, self.feature_importance_c0)
+        else:
+            return (self.predicted_proba_c1, self.class_name_c1, self.feature_importance_c1)
     pass
 
     # TODO: add this relation in the file
@@ -61,7 +112,7 @@ class Experiment:
             if(instance_index == 96):
                 return("TP")
 
-        if(dataset_name == "diabetes"):
+        if(dataset_name == "wine2"):
             if(instance_index == 86):
                 return("FN")
             if(instance_index == 1458):
@@ -71,7 +122,7 @@ class Experiment:
             if(instance_index == 1003):
                 return("TP")
 
-        if(dataset_name == "wine"):
+        if(dataset_name == "diabetes2"):
             if(instance_index == 291):
                 return("FN")
             if(instance_index == 725):
@@ -133,6 +184,8 @@ class Experiment:
             print(string.format(self.feature_value[fi].feature_name,
                                 self.feature_value[fi].feature_value))
 
+        print(self.get_prob_and_feat_list())
+
     pass
 
     def add_feature_weigth_c1(self, feature_name, feature_weigth, class_name):
@@ -150,12 +203,12 @@ class Experiment:
         self.feature_value.append(feat_imp_obj)
     pass
 
-    def number_of_features_c1(self):
-        return(len(self.feature_importance_c1))
-    pass
-
-    def number_of_features_c0(self):
-        return(len(self.feature_importance_c0))
-    pass
+    # def number_of_features_c1(self):
+    #     return(len(self.feature_importance_c1))
+    # pass
+    #
+    # def number_of_features_c0(self):
+    #     return(len(self.feature_importance_c0))
+    # pass
 
 pass
